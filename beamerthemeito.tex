@@ -1,0 +1,79 @@
+\documentclass{beamer}
+\mode<presentation> {
+\usetheme{Madrid}
+%　これで色変えれる　%
+\usecolortheme[RGB={0,100,125}]{structure}%this color is named itogreen.
+\usepackage{zxjatype}
+\usepackage[ipa]{zxjafont}
+\setbeamertemplate{footline}[page number]
+\setbeamertemplate{navigation symbols}{}
+}
+\usepackage{graphicx} 
+\usepackage{booktabs} 
+%\usepackage {tikz}
+\usepackage{tkz-graph}
+\usepackage{bm}
+\GraphInit[vstyle = Shade]
+\AtBeginSection[]{
+    \begin{frame}
+        \tableofcontents[currentsection]
+    \end{frame}
+}
+\newcommand{\indep}{\mathop{\perp\!\!\!\perp}}
+\tikzset{
+  LabelStyle/.style = { rectangle, rounded corners, draw,
+                        minimum width = 2em, fill = yellow!50,
+                        text = red, font = \bfseries },
+  VertexStyle/.append style = { inner sep=5pt,
+                                font = \normalsize\bfseries},
+  EdgeStyle/.append style = {->, bend left} }
+\usetikzlibrary {positioning}
+
+\newcommand{\ctext}[1]{\raise0.2ex\hbox{\textcircled{\scriptsize{#1}}}}
+\title[Short title]{調査観察データの統計科学ゼミ-第7回-}
+\author{Masami Chen Plio} % Your name
+\institute[OU HUS Adachi Lab M1] 
+{
+Osaka University faculty of Human Sciences\\Adachi Lab M1\\
+\medskip
+}
+\date{\today} 
+\begin{document}
+\begin{frame}
+\titlepage
+\end{frame}
+\begin{frame}
+\frametitle{担当章} 
+\tableofcontents 
+\end{frame}
+\section{3.4 一般的な周辺パラメトリックモデルの推定}
+\begin{frame}[fragile]{3.4 一般的な周辺パラメトリックモデルの推定}
+\begin{itemize}
+\setlength{\itemsep}{5mm}
+\item うんこ
+    \begin{itemize}
+    \item うんち
+    \end{itemize}
+\end{itemize}
+\end{frame}
+%%%
+\begin{frame}[fragile]{a}
+\end{frame}
+%%%
+
+\begin{frame}[fragile]{a}
+\end{frame}
+%%%
+
+\begin{frame}[fragile]{a}
+\end{frame}
+%%%
+
+\begin{frame}[fragile]{a}
+\end{frame}
+%%%
+
+
+\begin{frame}{お絵描き}
+\end{frame}
+\end{document}
