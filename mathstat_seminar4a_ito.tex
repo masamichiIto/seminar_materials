@@ -1,0 +1,109 @@
+\documentclass[11pt, a4paper]{jsarticle}
+
+\usepackage{amsmath, amssymb}
+\usepackage{bm}
+%\usepackage{graphix}
+\usepackage{ascmac}
+\usepackage{amsthm}
+
+\newtheorem{theo}{定理}[section]
+\newtheorem{defi}{定義}[section]
+\newtheorem{lemm}{補題}[section]
+\newtheorem{proo}{証明}[section]
+\newtheorem{coro}{系}[section]
+\newtheorem{exxx}{Ex.}[section]
+\newtheorem{rema}{Remark}[section]
+\newtheorem{exam}{例}[section]
+\newtheorem{algo}{アルゴリズム}[section]
+
+\newcommand{\indepe}{\mathop{\perp\!\!\!\perp}}
+\newcommand{\notindepe}{\mathop{\perp\!\!\!\!\!\!/\!\!\!\!\!\!\perp}}
+
+\title{Introduction to mathematical statisticsゼミ\\(第？回)}
+\author{担当: 伊藤真道}
+\date{未定}
+\begin{document}
+\maketitle
+
+
+\setcounter{section}{3}
+\section{Chap.4 Some Elementary Statistical Inferences}
+\setcounter{subsection}{3}
+\subsection{Order Statistics}
+順序統計量(order statistics)は，無作為標本がどの分布からであるかに依存しない依存しないいくつかの性質を持つため，統計的推論において重要な役割を果たしている．\\
+$X_1,\ldots, X_n$を台が$S=(a,b),-\infty\le a<b\le\infty$であるpdf$f(x)$を持つ分布からの無作為標本であるとする．$X_1,\ldots,X_n$をその大きさ順に並べ替えたものを$Y_1,\ldots,Y_n$とすると，$Y_1<Y_2<\cdots<Y_n$が成立する．このように確率変数列$X_1,\ldots,X_n$を昇順に並べ替えたものを順序統計量(order statistics)と呼ぶ．
+\begin{itembox}[l]{Thm. 4.4.1}
+$Y_1,\ldots,Y_n$を上のように定めた順序統計量とする．$Y_1,\ldots,Y_n$のjpdfは，
+\begin{align*}
+g(y_1,\ldots, y_n) = \left\{\begin{array}{ll}
+n!f(y_1)f(y_2)\cdots f(y_n) \ &(a < y_1 < y_2 < \cdots < y_n < b)\\
+0\ & (elsewhere)
+\end{array}\right.\tag{4.4.1}
+\end{align*}
+で与えられる．
+\end{itembox}
+\begin{proo}
+$(a,b)$の区間の分け方は，$n!$通り(例えば$a < x_3 < x_8 < x_1 < \cdots < x_2 < b$の並び順を考えてみて)あることに注意する．ひとまず$x_1 = y_1, x_2 = y_2,\ldots, x_n = y_n$という変換のヤコビアンを計算すると，このヤコビアンは1となる．行/列の並び替えに対して，ヤコビアンは不変であることを考慮すると，$n!$通りの対応づけに関して，全てのヤコビアンは1となる．以上から，
+\begin{align*}
+g(y_1, y_2,\ldots, y_n) &= \sum_{i = 1}^{n!}f(y_1,y_2,\ldots,y_n)|J_i|\\
+&= \sum_{i = 1}^{n!}f(y_1)f(y_2)\cdots f(y_n)|J_i|\\
+&= \left\{\begin{array}{ll}
+n!f(y_1)f(y_2)\cdots f(y_n)\ & a< y_1 < y_2 < \cdots < y_n < b\\
+0\ & elsewhere
+\end{array}\right.
+\end{align*}
+を得る．これは，定理の結果である．
+\end{proo}
+<note>\\
+\\
+\\
+\\
+\\
+\\
+また，
+\begin{align*}
+\int_a^x \left[F(w)\right]^{\alpha-1}f(w)dw &= \int_a^x \left(\frac{\left[F(w)\right]^{\alpha}}{\alpha}\right)'dw\\
+&= \left[\frac{\left[F(w)\right]^\alpha}{\alpha}\right]_a^x=\frac{\left[F(x)\right]^\alpha}{\alpha}\ (\alpha > 0)\\
+\int_y^b[1 - F(w)]^{\beta - 1}f(w)dw &= \int_y^b \left(\frac{(1-F(w))^\beta}{\beta}\right)'dw\\
+&= \left[\frac{\left[1-F(w)\right]^\beta}{\beta}\right]_y^b=\frac{\left[1-F(y)\right]^\beta}{\beta}\ (\beta > 0)
+\end{align*}
+であることを用いると，
+$$g_k(y_k) = \int_a^{y_k}\cdots\int_a^{y_2}\int_{y_k}^b\cdots\int_{y_n-1}^bn!f(y_1)f(y_2)\cdots f(y_n)dy_n\cdots y_{k+1}dy_1\cdots dy_{k-1}$$
+は，
+\begin{align*}
+g_k(y_k) = \left\{\begin{array}{ll}
+\frac{n!}{(k-1)!(n-k)!}\left[F(y_k)\right]^{k-1}[1-F(y_k)]^{n-k}f(y_k)\ & a < y_k < b\\
+0 & elsewhere
+\end{array}\right.
+\end{align*}
+と計算できる．積分範囲についてだが，例えば，$k=2, a < y_1 < y_2 < y_3 < b$としたとき，$y_1, y_3$の積分範囲は，それぞれ$a < y_1 < y_2,\ y_2 < y_3 < b$のようになる．\\
+<note>\\
+\\
+\\
+
+
+\subsubsection{Quantiles}
+ある$0<p<1$に対して，$X$のquantile点を$\xi_p := F^{-1}(p)$と定義する．さらに，$k$を$p(n+1)$を超えない最大の整数とする．pdf$f(x)$の$Y_k$より左側の部分の面積は，$F(Y_k)$であり，これの期待値は，
+$$E[F(Y_k)] = \int_a^b F(y_k)g_k(y_k)dy_k$$
+であり，ここで，$z := F(y_k)$とおくと，
+$$E[F(Y_k)] = \int_0^1\frac{n!}{(k-1)!(n-k)!}z^k(1-z)^{n-k}dz$$
+これの積分をベータ分布のpdfとして考えて積分すると，
+$$E[F(Y_k)] = \frac{n!}{(k-1)!(n-k)!}\frac{k!(n-k)!}{(n+1)!} = \frac{k}{n+1}$$
+よって平均して，全体の$k/(n+1)$が$Y_k$の左側に存在するということがわかる．よって， $Y_k$を$p = k/(n+1)$なるパーセント点$\xi_p$の推定量として利用できる．\\
+<note>\\
+\\
+\\
+\\
+
+\subsubsection{Confidence Intervals for Quantiles}
+以下紹介する$\xi_p$の信頼区間はdistribution free(元となる分布に依存しない)である．$P(X < \xi_p) = F(\xi_p) = p$であることと，$P(Y_i < \xi_p < Y_j) = P(\xi_p < Y_j) - P(\xi_p < Y_i)$であることを利用すると，
+\begin{align*}
+P(Y_i < \xi_p < Y_j) &= \sum_{l = 1}^{j-1}\binom{n}{l}p^l(1-p)^{n-l} - \sum_{m = 1}^i\binom{n}{m}p^m(1-p)^{n-m}\\
+&= \sum_{l = i}^{j-1}\binom{n}{l}p^l(1-p)^{n-l}
+\end{align*}
+と計算できる．ただし，$Y_k$は順序統計量であり，離散的である．\\
+<note>
+
+
+
+\end{document}
